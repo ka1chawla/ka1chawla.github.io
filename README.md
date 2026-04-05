@@ -15,25 +15,37 @@ npm run dev
 npm run build
 ```
 
-Static output is written to `dist/`.
+Static output is written to **`docs/`** (not the repo root). The root `index.html` is **only for `npm run dev`** — it must never be the published site.
 
 ## GitHub Pages
 
-1. In the repository **Settings → Pages**, set **Build and deployment → Source** to **GitHub Actions** (not “Deploy from a branch”).
-2. Push to `master` or `main`, or open **Actions → Deploy to GitHub Pages → Run workflow** (manual runs are enabled).
-3. The first time the deploy job runs, GitHub may require you to **approve** the `github-pages` environment: **Settings → Environments → github-pages**.
+Pick **one** of these (the wrong combo is why you still see `/src/main.jsx`):
+
+### Option A — Deploy from branch → `/docs` (simplest)
+
+1. Run `npm run build` before each release, then **commit and push** the **`docs/`** folder (this repo includes a built `docs/` so the site works as soon as you push).
+2. **Settings → Pages → Build and deployment → Source** → **Deploy from a branch**.
+3. Branch: **`main`** or **`master`** (your default). Folder: **`/docs`** — **not** `/ (root)`**.  
+   Publishing **root** serves the dev `index.html` with `/src/main.jsx`; **`/docs`** serves the built site.
+
+### Option B — GitHub Actions
+
+1. **Settings → Pages → Source** → **GitHub Actions** (not “Deploy from a branch” on `/`).
+2. Push to `master` or `main`, or **Actions → Deploy to GitHub Pages → Run workflow**.
+3. First run: approve the **`github-pages`** environment if prompted (**Settings → Environments**).
+
+The workflow runs `npm run build` and uploads the **`docs/`** output.
 
 ### Live site shows raw HTML with `/src/main.jsx` (blank page)
 
-That is the **source** `index.html` from the repo root. GitHub Pages is publishing your **Git branch files**, not the **Vite build** in `dist/`.
+That is the **source** `index.html` from the **repo root**. Pages is publishing **`/` (root)** on your default branch instead of the **built** site in **`docs/`**.
 
-**Fix:** Only ever publish the **`dist/`** folder after `npm run build`:
+**Fix:**
 
-- **If you use GitHub Actions** (recommended): **Settings → Pages → Source** must be **GitHub Actions**, **not** “Deploy from a branch” pointing at `main`/`master` **/**. The workflow uploads the **`dist`** artifact from a successful build. After changing the source, run the workflow again (**Actions → Deploy to GitHub Pages → Run workflow**).
+- **Deploy from branch:** Folder must be **`/docs`**, **not** **`/ (root)`**.
+- **GitHub Actions:** Source must be **GitHub Actions**, not branch **`/`**.
 
-- **If you use `npm run deploy`**: That pushes **`dist/`** to the **`gh-pages`** branch. Then **Settings → Pages → Source** must be **Deploy from branch** → **`gh-pages`** → **`/ (root)`** — **not** your default branch root.
-
-A correct production `index.html` references hashed files under **`./assets/…`**, not **`/src/main.jsx`**. Run `npm run build` locally and open `dist/index.html` via **`npm run preview`** to confirm.
+A good `docs/index.html` loads **`./assets/…`**, not **`/src/main.jsx`**. Check with `npm run build` and **`npm run preview`**.
 
 ### Custom domain (`kashishchawla.com`) — “Site not found”
 
@@ -56,9 +68,9 @@ Do these in order:
    Propagation and HTTPS can take from a few minutes up to 48 hours.
 
 5. **One publishing source**  
-   If you use **GitHub Actions**, keep Pages source on **GitHub Actions**. If you instead use **`npm run deploy`** (`gh-pages` branch), set Pages to deploy from the **`gh-pages`** branch — do not mix both without knowing which one is active.
+   If you use **GitHub Actions**, keep Pages source on **GitHub Actions**. If you use **`npm run deploy`**, it publishes the **`docs/`** folder to the **`gh-pages`** branch; set Pages to deploy from **`gh-pages`** at **`/`** — or prefer **default branch + `/docs`** / **Actions** instead of mixing sources by mistake.
 
-`public/CNAME` (copied into `dist/` on build) should contain only the hostname, e.g. `kashishchawla.com`. The **Custom domain** field in repo settings is what GitHub uses to attach the domain to your site.
+`public/CNAME` (copied into `docs/` on build) should contain only the hostname, e.g. `kashishchawla.com`. The **Custom domain** field in repo settings is what GitHub uses to attach the domain to your site.
 
 ## Project layout
 
