@@ -57,7 +57,7 @@ export default function App() {
             <span className="terminal-dot" />
             <span className="terminal-dot terminal-dot--amber" />
             <span className="terminal-dot terminal-dot--green" />
-            <span className="terminal-title">bash</span>
+            <span className="terminal-title">kashishchawla -- ~/.zsh</span>
           </div>
           <pre className="terminal-body">
             {lines.map((line, idx) => (
