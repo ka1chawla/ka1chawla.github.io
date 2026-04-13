@@ -113,6 +113,31 @@ body {
   word-break: break-word;
 }
 
+.terminal-user {
+  color: #6eb5ff;
+  text-shadow: 0 0 10px rgba(100, 170, 255, 0.25);
+}
+
+.terminal-at {
+  color: #f2f2f2;
+  text-shadow: none;
+}
+
+.terminal-path {
+  color: #f2f2f2;
+  text-shadow: none;
+}
+
+.terminal-dollar {
+  color: #ff6b6b;
+  text-shadow: 0 0 10px rgba(255, 80, 80, 0.2);
+}
+
+.terminal-text {
+  color: inherit;
+  text-shadow: inherit;
+}
+
 .terminal-cursor {
   display: inline;
   color: #7dff7a;
