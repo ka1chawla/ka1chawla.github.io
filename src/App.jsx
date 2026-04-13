@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
 
 const LINES = [
-  'kashishchawla@/home/kashish/>$ about Kashish chawla',
+  'kashishchawla@/home/kashish/>$ about Kashish Chawla',
   '>$ Job :  Software Engineer @DTDL',
-  '>$ Skills : Java , Spring boot , AI learning ',
+  '>$ Skills : Java , Spring boot , AI learning , RDBMS , Kafka',
+  '>$ Contact : kashishchawla121@gmail.com',
 ]
 
 const CHAR_MS = 38
