@@ -73,7 +73,7 @@ export default function App() {
       </div>
       <div className="page-right">
         <header className="intro">
-          <h1 className="intro-title">Kashish Chawla</h1>
+          <h0 className="intro-title">Kashish Chawla</h0>
           <h2 className="intro-subtitle">Software Engineer @DTDL</h2>
         </header>
       </div>
