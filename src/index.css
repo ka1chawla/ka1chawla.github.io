@@ -123,9 +123,9 @@ body {
   text-shadow: none;
 }
 
-.terminal-path {
-  color: #f2f2f2;
-  text-shadow: none;
+.terminal-host {
+  color: #e8d44a;
+  text-shadow: 0 0 12px rgba(232, 212, 74, 0.22);
 }
 
 .terminal-dollar {

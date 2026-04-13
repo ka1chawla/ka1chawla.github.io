@@ -8,10 +8,12 @@ const LINES = [
 ]
 
 const PROMPT_USER = 'kashishchawla'
-const PROMPT_PATH = '/home/kashish/>$'
+/** Yellow segment on line 1; the `$` right after `>` is red, not part of this. */
+const PROMPT_AT_PATH = '@/home/kashish/>'
 
-/** After `>`, this whole prefix is red on the given line (typing-safe). */
+/** After yellow `>`, this prefix is red (typing-safe). */
 const RED_AFTER_GT = {
+  0: '$ about',
   1: '$ Job',
   2: '$ Skills',
   3: '$ Contact',
@@ -76,36 +78,44 @@ function terminalColoredSpans(line, lineIndex) {
     }
     if (line.length <= k) return out
 
-    if (line[k] === '@') {
+    const yellowLen = Math.min(line.length - k, PROMPT_AT_PATH.length)
+    const yellowSlice = line.slice(k, k + yellowLen)
+    if (PROMPT_AT_PATH.startsWith(yellowSlice)) {
       out.push(
-        <span key="at" className="terminal-at">
-          @
+        <span key="host" className="terminal-host">
+          {yellowSlice}
         </span>,
       )
-      k += 1
+      k += yellowLen
     }
     if (line.length <= k) return out
 
-    const pathLen = Math.min(line.length - k, PROMPT_PATH.length)
-    const pathSlice = line.slice(k, k + pathLen)
-    if (PROMPT_PATH.startsWith(pathSlice)) {
-      out.push(
-        <span key="path" className="terminal-path">
-          {pathSlice}
-        </span>,
-      )
-      k += pathLen
+    const red0 = RED_AFTER_GT[0]
+    const tail0 = line.slice(k)
+    if (red0 && full.slice(k).startsWith(red0)) {
+      let m = 0
+      while (m < tail0.length && m < red0.length && tail0[m] === red0[m]) {
+        m += 1
+      }
+      if (m > 0) {
+        out.push(
+          <span key="about" className="terminal-dollar">
+            {tail0.slice(0, m)}
+          </span>,
+        )
+        k += m
+      }
     }
-    if (line.length <= k) return out
-
-    pushRest(line.slice(k), 'r')
+    if (line.length > k) {
+      pushRest(line.slice(k), 'r')
+    }
     return out
   }
 
   if (full.startsWith('>$')) {
     if (line.length > 0 && line[0] === '>') {
       out.push(
-        <span key="gt" className="terminal-text">
+        <span key="gt" className="terminal-host">
           {'>'}
         </span>,
       )
