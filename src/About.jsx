@@ -59,15 +59,15 @@ export default function About() {
             </p>
             <p className="about-intro-p">You can dive deeper into the different chapters of my story below:</p>
             <p className="about-intro-p about-intro-p--tight">
-              <SectionLink sectionId={SECTION_IDS.technical}>[Technical Experience]</SectionLink>: A breakdown of the
+              <SectionLink sectionId={SECTION_IDS.technical}>Technical Experience</SectionLink>: A breakdown of the
               stacks I’ve mastered and the projects I’ve led.
             </p>
             <p className="about-intro-p about-intro-p--tight">
-              <SectionLink sectionId={SECTION_IDS.education}>[Education]</SectionLink>: The academic foundation that
+              <SectionLink sectionId={SECTION_IDS.education}>Education</SectionLink>: The academic foundation that
               started my journey in technology.
             </p>
             <p className="about-intro-p about-intro-p--tight">
-              <SectionLink sectionId={SECTION_IDS.life}>[Life Beyond Code]</SectionLink>: My adventures in travel,
+              <SectionLink sectionId={SECTION_IDS.life}>Life Beyond Code</SectionLink>: My adventures in travel,
               social interests, and the hobbies that keep me balanced.
             </p>
           </div>
@@ -80,10 +80,10 @@ export default function About() {
             Technical Experience
           </h2>
           <p className="about-section-body">
-            Over seven years I have focused on backend systems and data-heavy platforms—primarily with Java, Spring
-            Boot, relational databases, Kafka, and modern deployment practices. I have led and contributed to projects
-            that required clear ownership, performance tuning, and collaboration across product and infrastructure
-            teams. Replace this paragraph with your own timeline, employers, and standout initiatives.
+            Currently, I am working with DTDL as software developer on their Fintech platform for Europe. I have been working with DTDL since past 4.5 years.
+            Before fintech platform , I have also worked on DTDL's E-commerce platform for Europe.
+
+            Prior to joining DTDL I had 3 years of experience in India with companies like Payu Payments, Airtel etc.
           </p>
         </section>
 
@@ -92,9 +92,8 @@ export default function About() {
             Education
           </h2>
           <p className="about-section-body">
-            My formal training gave me the problem-solving habits and fundamentals that still guide how I learn new
-            stacks today. Add your degrees, institutions, coursework, or certifications here so readers see the
-            academic path behind your engineering career.
+            I have an Engineering Degree from NSIT (Netaji Subhash Institute of Technology) with major in IT ( Information & Technology).
+            My High school & Junior school has been completed from HM Dav sr. sec School & DCM sr sec school,Ferozepur,Punjab.
           </p>
         </section>
 
@@ -104,8 +103,9 @@ export default function About() {
           </h2>
           <p className="about-section-body">
             Travel, people, and offline hobbies keep me grounded and curious—often the same curiosity I bring to
-            debugging and design. Use this space for the trips you love, communities you care about, music, sports, or
-            anything else that rounds out your story beyond the keyboard.
+            debugging and design.</p>
+          <p className="about-section-body"></p>
+          <p className="about-section-body">Having a goal to travel all the states of India , I have travelled 10 out of 28 states & 3 out of 9 UT's of India.
           </p>
         </section>
       </div>
