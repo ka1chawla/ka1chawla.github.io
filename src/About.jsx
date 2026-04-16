@@ -83,7 +83,7 @@ export default function About() {
             Currently, I am working with DTDL as software developer on their Fintech platform for Europe. I have been working with DTDL since past 4.5 years.
             Before fintech platform , I have also worked on DTDL's E-commerce platform for Europe.
 
-            Prior to joining DTDL I had 3 years of experience in India with companies like Payu Payments, Airtel etc.
+            Prior to joining DTDL I had work experience in India with companies like PayU Payments, Airtel etc.
           </p>
         </section>
 
