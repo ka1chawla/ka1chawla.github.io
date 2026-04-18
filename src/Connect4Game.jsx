@@ -234,7 +234,7 @@ export default function Connect4Game() {
 
   return (
     <div className="play-box play-box--c4">
-      <h2 className="play-title">Connect 4</h2>
+      <h2 className="play-title">Connect 4 Dots</h2>
       <p className="play-subtitle">Four in a row — horizontal, vertical, or diagonal. You are Red, Kashish is Yellow.</p>
       <p className="play-status" role="status">
         {status}
