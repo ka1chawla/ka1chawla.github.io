@@ -59,18 +59,21 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4.5rem 1.25rem 2rem;
+  padding: clamp(3.75rem, 12vw, 4.75rem) clamp(0.75rem, 4vw, 1.5rem) clamp(1rem, 4vh, 2rem);
+  box-sizing: border-box;
 }
 
 .play-page--split {
   --play-area-min-h: min(52rem, 92vh);
   align-items: stretch;
   justify-content: center;
-  gap: clamp(1.25rem, 3vw, 2.5rem);
-  max-width: 1200px;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  max-width: min(1200px, 100%);
+  width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  box-sizing: border-box;
 }
 
 .play-sidebar {
@@ -80,34 +83,37 @@ body {
   align-self: stretch;
   justify-self: center;
   width: min(100%, 22rem);
+  max-width: 100%;
   min-height: var(--play-area-min-h);
   box-sizing: border-box;
-  gap: 1.25rem;
-  padding: 0.5rem 0.5rem 0.5rem 0;
+  gap: clamp(0.85rem, 2.5vw, 1.25rem);
+  padding: clamp(0.25rem, 1.5vw, 0.5rem) clamp(0.25rem, 1.5vw, 0.5rem) clamp(0.25rem, 1.5vw, 0.5rem) 0;
   min-width: 0;
   /* 10% of play-area height above true vertical centre; uses same var as min-height so it stays fixed on game change. */
   transform: translateY(calc(var(--play-area-min-h) * -0.1));
 }
 
 .play-sidebar-heading {
-  font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  font-size: clamp(1rem, calc(0.5rem + 2.8vw), 1.35rem);
   font-weight: 700;
   line-height: 1.35;
   letter-spacing: -0.02em;
   color: #111;
   margin: 0;
+  text-wrap: balance;
 }
 
 .play-game-picker {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: clamp(0.5rem, 2vw, 0.65rem);
 }
 
 .play-game-btn {
   width: 100%;
-  padding: 0.65rem 1rem;
-  font-size: 1rem;
+  min-height: 2.75rem;
+  padding: clamp(0.55rem, 1.5vw, 0.65rem) clamp(0.85rem, 3vw, 1rem);
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   font-weight: 600;
   font-family: inherit;
   text-align: left;
@@ -117,6 +123,7 @@ body {
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  touch-action: manipulation;
   transition:
     border-color 0.15s ease,
     background 0.15s ease;
@@ -144,18 +151,19 @@ body {
 
 .play-box {
   width: 100%;
-  max-width: 22rem;
-  padding: 1.75rem 1.5rem 1.5rem;
+  max-width: min(22rem, 100%);
+  padding: clamp(1.15rem, 4vw, 1.75rem) clamp(1rem, 3.5vw, 1.5rem) clamp(1rem, 3.5vw, 1.5rem);
   background: #fff;
-  border-radius: 14px;
+  border-radius: clamp(10px, 2vw, 14px);
   box-shadow:
     0 0 0 1px rgba(0, 0, 0, 0.06),
     0 20px 45px rgba(0, 0, 0, 0.12);
   text-align: center;
+  box-sizing: border-box;
 }
 
 .play-box--wide {
-  max-width: min(100%, 28rem);
+  max-width: min(28rem, 100%);
 }
 
 .play-title {
@@ -167,17 +175,19 @@ body {
 }
 
 .play-subtitle {
-  font-size: 0.9rem;
+  font-size: clamp(0.8rem, 2.8vw, 0.9rem);
   color: #555;
   margin-bottom: 0.75rem;
+  line-height: 1.45;
 }
 
 .play-status {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2.8vw, 0.95rem);
   font-weight: 600;
   color: #333;
   min-height: 1.5rem;
   margin-bottom: 1.1rem;
+  line-height: 1.4;
 }
 
 .play-grid {
@@ -197,6 +207,7 @@ body {
   font-family: inherit;
   color: #111;
   cursor: pointer;
+  touch-action: manipulation;
   transition: background 0.15s ease;
 }
 
@@ -221,8 +232,9 @@ body {
 
 .play-reset {
   width: 100%;
+  min-height: 2.75rem;
   padding: 0.55rem 1rem;
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
   font-weight: 600;
   font-family: inherit;
   color: #222;
@@ -230,6 +242,7 @@ body {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .play-reset:hover {
@@ -237,7 +250,7 @@ body {
 }
 
 .play-scores {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
   color: #333;
   margin-bottom: 0.5rem;
 }
@@ -252,8 +265,9 @@ body {
 .sos-pick-btn {
   flex: 1;
   max-width: 8rem;
+  min-height: 2.5rem;
   padding: 0.45rem 0.65rem;
-  font-size: 0.85rem;
+  font-size: clamp(0.8rem, 2.4vw, 0.85rem);
   font-weight: 600;
   font-family: inherit;
   color: #333;
@@ -261,6 +275,7 @@ body {
   border: 2px solid transparent;
   border-radius: 8px;
   cursor: pointer;
+  touch-action: manipulation;
 }
 
 .sos-pick-btn:disabled {
@@ -277,16 +292,18 @@ body {
 .sos-grid {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
-  gap: 4px;
+  gap: clamp(3px, 0.8vw, 5px);
   margin-bottom: 1.1rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .sos-cell {
   aspect-ratio: 1;
   border: none;
-  border-radius: 4px;
+  border-radius: clamp(3px, 0.8vw, 5px);
   background: #e8e8ea;
-  font-size: clamp(0.65rem, 2.8vw, 0.85rem);
+  font-size: clamp(0.5rem, calc(0.2rem + 2.5vw), 0.85rem);
   font-weight: 700;
   font-family: inherit;
   color: #111;
@@ -294,6 +311,7 @@ body {
   padding: 0;
   min-width: 0;
   transition: background 0.15s ease;
+  touch-action: manipulation;
 }
 
 .sos-cell:hover:not(:disabled) {
@@ -315,7 +333,8 @@ body {
   background: #e8f0fe;
 }
 
-@media (max-width: 768px) {
+/* Stack sidebar + game sooner so narrow / tablet portrait layouts don’t squeeze two columns */
+@media (max-width: 960px) {
   .play-page--split {
     --play-area-min-h: 0;
     grid-template-columns: 1fr;
@@ -327,14 +346,48 @@ body {
     order: 0;
     align-self: center;
     justify-self: center;
-    width: min(100%, 22rem);
+    width: min(100%, min(22rem, 100%));
     min-height: 0;
     justify-content: center;
+    transform: none;
   }
 
   .play-main {
     order: 1;
     min-height: 0;
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 480px) {
+  .play-page {
+    padding-inline: clamp(0.5rem, 3.5vw, 1rem);
+  }
+
+  .play-sidebar-heading {
+    text-align: center;
+  }
+
+  .play-game-btn {
+    text-align: center;
+  }
+
+  .play-grid {
+    gap: 6px;
+  }
+
+  .play-cell {
+    border-radius: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .play-game-btn,
+  .play-reset,
+  .play-cell,
+  .sos-cell,
+  .sos-pick-btn {
+    transition: none;
   }
 }
 
