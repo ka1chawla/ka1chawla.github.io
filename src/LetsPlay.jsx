@@ -91,7 +91,7 @@ export default function LetsPlay() {
       return
     }
     if (outcome === 'O') {
-      setStatus('Bot wins!')
+      setStatus('Kashish wins!')
       return
     }
     if (outcome === 'draw') {
@@ -105,7 +105,7 @@ export default function LetsPlay() {
       return
     }
 
-    setStatus('Bot is thinking…')
+    setStatus('Kashish is thinking…')
     const id = window.setTimeout(() => {
       const move = bestBotMove(board)
       if (move < 0) return
@@ -135,7 +135,7 @@ export default function LetsPlay() {
     <main className="play-page">
       <div className="play-box">
         <h1 className="play-title">Let&apos;s Play</h1>
-        <p className="play-subtitle">Tic-tac-toe — you are X, the bot is O</p>
+        <p className="play-subtitle">Tic-tac-toe — you are X, the Kashish is O</p>
         <p className="play-status" role="status">
           {status}
         </p>
