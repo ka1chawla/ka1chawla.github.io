@@ -135,7 +135,7 @@ export default function LetsPlay() {
     <main className="play-page">
       <div className="play-box">
         <h1 className="play-title">Let&apos;s Play</h1>
-        <p className="play-subtitle">Tic-tac-toe — you are X, the Kashish is O</p>
+        <p className="play-subtitle">Tic-tac-toe — you are X, The Kashish is O</p>
         <p className="play-status" role="status">
           {status}
         </p>
