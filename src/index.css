@@ -125,12 +125,12 @@ body {
   opacity: 0.95;
 }
 
-.play-cell--x {
+.play-cell--o {
   color: #0a58ca;
   background: #e8f0fe;
 }
 
-.play-cell--o {
+.play-cell--k {
   color: #c41e3a;
   background: #fde8ec;
 }

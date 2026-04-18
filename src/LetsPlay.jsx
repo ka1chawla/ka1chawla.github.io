@@ -28,8 +28,8 @@ function isDraw(board) {
 
 function minimaxScore(board, isMaximizing) {
   const w = getWinner(board)
-  if (w === 'O') return 1
-  if (w === 'X') return -1
+  if (w === 'K') return 1
+  if (w === 'O') return -1
   if (isDraw(board)) return 0
 
   if (isMaximizing) {
@@ -37,7 +37,7 @@ function minimaxScore(board, isMaximizing) {
     for (let i = 0; i < 9; i += 1) {
       if (board[i]) continue
       const next = [...board]
-      next[i] = 'O'
+      next[i] = 'K'
       best = Math.max(best, minimaxScore(next, false))
     }
     return best
@@ -46,7 +46,7 @@ function minimaxScore(board, isMaximizing) {
   for (let i = 0; i < 9; i += 1) {
     if (board[i]) continue
     const next = [...board]
-    next[i] = 'X'
+    next[i] = 'O'
     best = Math.min(best, minimaxScore(next, true))
   }
   return best
@@ -58,7 +58,7 @@ function bestBotMove(board) {
   for (let i = 0; i < 9; i += 1) {
     if (board[i]) continue
     const next = [...board]
-    next[i] = 'O'
+    next[i] = 'K'
     const score = minimaxScore(next, false)
     if (score > bestScore) {
       bestScore = score
@@ -69,28 +69,28 @@ function bestBotMove(board) {
 }
 
 function nextPlayer(board) {
-  const xs = board.filter((c) => c === 'X').length
   const os = board.filter((c) => c === 'O').length
-  return xs === os ? 'X' : 'O'
+  const ks = board.filter((c) => c === 'K').length
+  return os === ks ? 'O' : 'K'
 }
 
 export default function LetsPlay() {
   const [board, setBoard] = useState(EMPTY)
-  const [status, setStatus] = useState('Your turn — you are X')
+  const [status, setStatus] = useState('Your turn — you are O')
 
   const outcome = getWinner(board) || (isDraw(board) ? 'draw' : null)
 
   const reset = useCallback(() => {
     setBoard(EMPTY())
-    setStatus('Your turn — you are X')
+    setStatus('Your turn — you are O')
   }, [])
 
   useEffect(() => {
-    if (outcome === 'X') {
+    if (outcome === 'O') {
       setStatus('You win!')
       return
     }
-    if (outcome === 'O') {
+    if (outcome === 'K') {
       setStatus('Kashish wins!')
       return
     }
@@ -100,8 +100,8 @@ export default function LetsPlay() {
     }
 
     const turn = nextPlayer(board)
-    if (turn === 'X') {
-      setStatus('Your turn — you are X')
+    if (turn === 'O') {
+      setStatus('Your turn — you are O')
       return
     }
 
@@ -112,7 +112,7 @@ export default function LetsPlay() {
       setBoard((prev) => {
         const next = [...prev]
         if (next[move]) return prev
-        next[move] = 'O'
+        next[move] = 'K'
         return next
       })
     }, 350)
@@ -122,11 +122,11 @@ export default function LetsPlay() {
 
   const onCellClick = (index) => {
     if (outcome) return
-    if (nextPlayer(board) !== 'X') return
+    if (nextPlayer(board) !== 'O') return
     if (board[index]) return
     setBoard((prev) => {
       const next = [...prev]
-      next[index] = 'X'
+      next[index] = 'O'
       return next
     })
   }
@@ -135,7 +135,7 @@ export default function LetsPlay() {
     <main className="play-page">
       <div className="play-box">
         <h1 className="play-title">Let&apos;s Play</h1>
-        <p className="play-subtitle">Tic-tac-toe — you are X, The Kashish is O</p>
+        <p className="play-subtitle">Tic-tac-toe — you are O, Kashish is K</p>
         <p className="play-status" role="status">
           {status}
         </p>
@@ -146,7 +146,7 @@ export default function LetsPlay() {
               type="button"
               className={`play-cell ${cell ? `play-cell--${cell.toLowerCase()}` : ''}`}
               onClick={() => onCellClick(i)}
-              disabled={Boolean(outcome) || cell !== null || nextPlayer(board) !== 'X'}
+              disabled={Boolean(outcome) || cell !== null || nextPlayer(board) !== 'O'}
               aria-label={cell ? `Cell ${i + 1}, ${cell}` : `Cell ${i + 1}, empty`}
             >
               {cell}
