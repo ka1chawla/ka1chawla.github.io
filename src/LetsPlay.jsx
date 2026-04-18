@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Connect4Game from './Connect4Game.jsx'
 import SOSGame from './SOSGame.jsx'
 import TicTacToeGame from './TicTacToeGame.jsx'
 
@@ -24,10 +25,17 @@ export default function LetsPlay() {
           >
             SOS game
           </button>
+          <button
+            type="button"
+            className={`play-game-btn ${game === 'c4' ? 'play-game-btn--active' : ''}`}
+            onClick={() => setGame('c4')}
+          >
+            Connect 4 Dots
+          </button>
         </div>
       </aside>
       <section className="play-main" aria-live="polite">
-        {game === 'ttt' ? <TicTacToeGame /> : <SOSGame />}
+        {game === 'ttt' ? <TicTacToeGame /> : game === 'sos' ? <SOSGame /> : <Connect4Game />}
       </section>
     </main>
   )
