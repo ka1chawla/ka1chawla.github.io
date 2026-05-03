@@ -16,6 +16,46 @@ body {
   min-height: 100vh;
 }
 
+/* Shared inset: pull n8n FAB away from bottom-right corner */
+:root {
+  --n8n-chat-fab-inset: calc(1rem + 32px);
+}
+
+/* n8n chat mount (display:contents so only #n8n-chat participates in layout) */
+.n8n-chat-shell {
+  display: contents;
+}
+
+/* Library defaults tie fixed edges to :root vars; pin wrapper inset and zero inner offsets */
+#n8n-chat .chat-window-wrapper {
+  position: fixed !important;
+  right: var(--n8n-chat-fab-inset) !important;
+  bottom: var(--n8n-chat-fab-inset) !important;
+  top: auto !important;
+  left: auto !important;
+  --chat--window--right: 0 !important;
+  --chat--window--bottom: 0 !important;
+  --chat--spacing: 0 !important;
+  pointer-events: auto;
+}
+
+/* Circular boundary ring around n8n chat toggle (library: .chat-window-toggle) */
+#n8n-chat .chat-window-wrapper .chat-window-toggle {
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.98),
+    0 0 0 5px rgba(26, 55, 110, 0.42),
+    0 2px 10px rgba(0, 0, 0, 0.12) !important;
+}
+
+#n8n-chat .chat-window-wrapper .chat-window-toggle:hover,
+#n8n-chat .chat-window-wrapper .chat-window-toggle:focus-visible {
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.98),
+    0 0 0 5px rgba(26, 55, 110, 0.55),
+    0 4px 14px rgba(0, 0, 0, 0.18) !important;
+}
+
 .site-nav {
   position: fixed;
   top: 1rem;
