@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import About from './About.jsx'
 import Home from './Home.jsx'
 import LetsPlay from './LetsPlay.jsx'
+import Blogs from './Blogs.jsx'
 
 function routeFromHash() {
   const h = window.location.hash.replace(/^#/, '')
   if (h === '/about' || h === 'about') return 'about'
   if (h === '/play' || h === 'play') return 'play'
+  if (h === '/blogs' || h === 'blogs') return 'blogs'
   return 'home'
 }
 
@@ -38,7 +40,7 @@ export default function App() {
           Let&apos;s Play
         </a>
       </nav>
-      {route === 'about' ? <About /> : route === 'play' ? <LetsPlay /> : <Home />}
+      {route === 'about' ? <About /> : route === 'play' ? <LetsPlay /> : route === 'blogs' ? <Blogs /> : <Home />}
     </>
   )
 }
